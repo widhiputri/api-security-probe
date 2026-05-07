@@ -1,0 +1,11 @@
+node_modules/
+*.tgz
+
+# Probe results (may contain sensitive data)
+results.json
+probe-results.json
+
+# Local test files
+mock-server.js
+mock-server-vulnerable.js
+test-local.config.yml

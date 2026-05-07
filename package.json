@@ -1,0 +1,33 @@
+{
+  "name": "api-security-probe",
+  "version": "0.1.0",
+  "description": "Lightweight API security probe: rate limiting, JWT attacks, BOLA, IDOR, security headers. No ZAP required.",
+  "keywords": ["security", "api", "probe", "jwt", "bola", "idor", "rate-limit", "pentest", "owasp"],
+  "author": "Widhi Putri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/widhiputri/api-security-probe.git"
+  },
+  "homepage": "https://github.com/widhiputri/api-security-probe#readme",
+  "bugs": {
+    "url": "https://github.com/widhiputri/api-security-probe/issues"
+  },
+  "main": "src/probe.js",
+  "bin": {
+    "api-security-probe": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "sample/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

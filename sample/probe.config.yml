@@ -1,0 +1,57 @@
+target: https://api.example.com
+
+auth:
+  type: oauth2-password
+  url: https://auth.example.com/realms/myrealm/protocol/openid-connect/token
+  logout_url: https://auth.example.com/realms/myrealm/protocol/openid-connect/logout  # optional: enables token-after-logout check
+  jwks_url: https://auth.example.com/realms/myrealm/protocol/openid-connect/certs     # optional: enables RS256-to-HS256 check
+  client_id: myclient
+  client_secret: ${AUTH_CLIENT_SECRET}   # resolved from environment variable
+
+roles:
+  admin:
+    username: ${ADMIN_USERNAME}
+    password: ${ADMIN_PASSWORD}
+  user:
+    username: ${USER_USERNAME}
+    password: ${USER_PASSWORD}
+  user2:                                 # optional: needed for IDOR checks
+    username: ${USER2_USERNAME}
+    password: ${USER2_PASSWORD}
+
+tests:
+  - rate-limit
+  - api-rate-limit
+  - session
+  - bola
+  - idor
+  - headers
+  - tls
+  - ports
+
+session:
+  probe_endpoint: /accounts              # an authenticated endpoint used for JWT attack checks
+
+bola:
+  admin_endpoints:
+    - GET /admin/users                   # endpoints only admin should access
+    - GET /admin/settings                # user token should be blocked (401/403)
+
+idor:
+  endpoints:
+    - GET /accounts/{accountId}          # user2 should not access user's resources
+    - GET /orders/{orderId}
+  example_ids:
+    accountId: "abc123"                  # user's resource ID
+    orderId: "xyz456"
+
+rate_limit:
+  api_endpoints:
+    - GET /accounts
+    - GET /orders
+
+headers:
+  probe_endpoint: /health                # endpoint to probe for security headers (can be unauthenticated)
+
+ports:
+  check: [22, 23, 3306, 5432, 6379, 27017, 8080, 9200]
