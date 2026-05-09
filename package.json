@@ -1,6 +1,6 @@
 {
   "name": "api-security-probe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lightweight API security probe: rate limiting, JWT attacks, BOLA, IDOR, security headers. No ZAP required.",
   "keywords": ["security", "api", "probe", "jwt", "bola", "idor", "rate-limit", "pentest", "owasp"],
   "author": "Widhi Putri",

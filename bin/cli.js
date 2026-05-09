@@ -66,7 +66,9 @@ function fmtDuration(ms) {
 }
 
 function fmtTimestamp(d) {
-  return d.toISOString().replace('T', ' ').slice(0, 19);
+  const date = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'UTC' });
+  return `${date}  ${time} +00:00`;
 }
 
 function printGroup(results, status) {

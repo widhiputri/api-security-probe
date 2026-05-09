@@ -176,7 +176,29 @@ The process exits with code `1` if any check fails, making it suitable as a CI g
 
 ## Output
 
-Terminal output is color-coded. Pass `--output results.json` to also write a machine-readable JSON file.
+Terminal output is color-coded and grouped:
+
+- **FAILED** section first: each failing check with per-item detail and the reason it failed
+- **PASSED** section: checks that passed, with sub-item counts
+- **SKIPPED** section: checks that were skipped (e.g. TLS on an HTTP target)
+- **Summary table**: per-check PASS / FAIL / SKIP counts with totals
+- Start time, finish time, total duration, and final verdict on every run
+
+Timestamps use UTC and are shown as `09 May 2026  07:27:52 +00:00`.
+
+Pass `--output results.json` to also write a machine-readable JSON file:
+
+```json
+{
+  "target": "https://api.example.com",
+  "started_at": "2026-05-09T07:27:52.000Z",
+  "finished_at": "2026-05-09T07:27:53.000Z",
+  "duration_ms": 1045,
+  "verdict": "FAILED",
+  "summary": { "passed": 10, "failed": 5, "skipped": 1, "total": 8 },
+  "checks": [...]
+}
+```
 
 ## License
 
