@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/widhiputri/api-security-probe.git"
+    "url": "git+https://github.com/widhiputri/api-security-probe.git"
   },
   "homepage": "https://github.com/widhiputri/api-security-probe#readme",
   "bugs": {
